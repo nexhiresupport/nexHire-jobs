@@ -45,8 +45,8 @@ eligibility:
   exclude_no_sponsorship: false    # false = keep but flag "No sponsorship"; true = drop
 
 # Look-back window. Monday's run (IST) covers Fri -> Mon.
-lookback_hours_weekday: 25
-lookback_hours_monday: 73
+lookback_hours_weekday: 168
+lookback_hours_monday: 168
 
 # Search phrases used by Adzuna / JSearch / discovery
 search_phrases:
