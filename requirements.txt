@@ -1,4 +1,4 @@
-requests==2.31.0
+requests==2.28.2
 urllib3==1.26.18
 pyyaml>=6.0
 openpyxl>=3.1
