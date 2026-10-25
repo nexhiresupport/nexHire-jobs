@@ -39,31 +39,22 @@ greenhouse:
   - duolingo
   - peloton
   - vercel
-  - grammarly
   - flexport
-  - nerdwallet
   - sofi
-  - marqeta
   - fivetran
-  - dbtlabsinc
-  - confluent
   - starburst
-  - amplitude
   - mixpanel
   - lucidmotors
   - waymo
-  - cruise
   - nuro
   - scaleai
 
 lever:
   - palantir
   - spotify
-  - plaid
   - zoox
   - wealthfront
   - kraken123
-  - aurora-innovation
 
 ashby:
   - ramp
