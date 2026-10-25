@@ -45,14 +45,17 @@ def fetch_jsearch(session, phrase: str, date_posted: str, cfg: dict) -> list[Job
     url, headers = _jsearch_endpoint()
     params = {
         "query": f"{phrase} in USA",
-        "page": 1,
         "num_pages": cfg.get("num_pages", 3),
         "date_posted": date_posted,          # today | 3days
         "country": "us",
         "employment_types": cfg.get("employment_types", "FULLTIME,CONTRACTOR"),
     }
     r = session.get(url, params=params, headers=headers, timeout=60)
-    r.raise_for_status()
+    if not r.ok:
+        # RapidAPI/OpenWeb Ninja include the useful cause in the response body.
+        # Keep it in the run log so stale credentials and endpoint changes are actionable.
+        detail = r.text.strip().replace("\n", " ")[:500]
+        raise RuntimeError(f"JSearch returned HTTP {r.status_code}: {detail}")
     jobs = []
     for j in r.json().get("data") or []:
         link, via_board = _best_apply_link(j)
