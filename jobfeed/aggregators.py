@@ -13,7 +13,7 @@ def _jsearch_endpoint():
     if os.getenv("OPENWEBNINJA_API_KEY"):
         return "https://api.openwebninja.com/jsearch/search", {"x-api-key": os.environ["OPENWEBNINJA_API_KEY"]}
     if os.getenv("JSEARCH_RAPIDAPI_KEY"):
-        return "https://jsearch.p.rapidapi.com/search", {
+        return "https://jsearch.p.rapidapi.com/search-v2", {
             "X-RapidAPI-Key": os.environ["JSEARCH_RAPIDAPI_KEY"],
             "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
         }
