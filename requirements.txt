@@ -1,5 +1,5 @@
-requests>=2.31
-urllib3>=2.0
+requests==2.31.0
+urllib3==1.26.18
 pyyaml>=6.0
 openpyxl>=3.1
 pytest>=8.0
