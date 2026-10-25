@@ -1,0 +1,51 @@
+name: Daily Data Engineer Job Feed
+
+on:
+  schedule:
+    - cron: "30 1 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run-feed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run job feed
+        env:
+          JSEARCH_RAPIDAPI_KEY:   ${{ secrets.JSEARCH_RAPIDAPI_KEY }}
+          OPENWEBNINJA_API_KEY:   ${{ secrets.OPENWEBNINJA_API_KEY }}
+          ADZUNA_APP_ID:          ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY:         ${{ secrets.ADZUNA_APP_KEY }}
+          BRAVE_API_KEY:          ${{ secrets.BRAVE_API_KEY }}
+          SMTP_USER:              ${{ secrets.SMTP_USER }}
+          SMTP_PASS:              ${{ secrets.SMTP_PASS }}
+          EMAIL_TO:               ${{ secrets.EMAIL_TO }}
+          SMTP_HOST:              ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:              ${{ secrets.SMTP_PORT }}
+        run: python -m jobfeed
+
+      - name: Commit state + output
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ output/ || true
+          git diff --cached --quiet && echo "Nothing to commit" && exit 0
+          git commit -m "chore: job feed run $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
