@@ -1,0 +1,82 @@
+# Seed list of company career boards (the slug is the last part of the careers URL).
+#   boards.greenhouse.io/<slug>   jobs.lever.co/<slug>   jobs.ashbyhq.com/<slug>
+#   jobs.smartrecruiters.com/<slug>
+# The discovery step adds new companies automatically to data/companies_discovered.json.
+# A wrong slug just shows as an error in the "Run Log" sheet - remove it or fix it.
+
+greenhouse:
+  - stripe
+  - airbnb
+  - databricks
+  - robinhood
+  - coinbase
+  - dropbox
+  - lyft
+  - pinterest
+  - reddit
+  - instacart
+  - doordashusa
+  - datadog
+  - cloudflare
+  - twilio
+  - gitlab
+  - figma
+  - discord
+  - brex
+  - chime
+  - affirm
+  - gusto
+  - airtable
+  - asana
+  - samsara
+  - anthropic
+  - roblox
+  - squarespace
+  - elastic
+  - mongodb
+  - okta
+  - toast
+  - duolingo
+  - peloton
+  - vercel
+  - grammarly
+  - flexport
+  - nerdwallet
+  - sofi
+  - marqeta
+  - fivetran
+  - dbtlabsinc
+  - confluent
+  - starburst
+  - amplitude
+  - mixpanel
+  - lucidmotors
+  - waymo
+  - cruise
+  - nuro
+  - scaleai
+
+lever:
+  - palantir
+  - spotify
+  - plaid
+  - zoox
+  - wealthfront
+  - kraken123
+  - aurora-innovation
+
+ashby:
+  - ramp
+  - notion
+  - linear
+  - openai
+  - replit
+  - vanta
+  - deel
+  - hex
+  - snowflake
+
+smartrecruiters:
+  - Visa
+  - ServiceNow
+  - Bosch

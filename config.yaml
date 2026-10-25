@@ -1,0 +1,100 @@
+# ---------------------------------------------------------------
+# Job feed settings. Edit this file to change roles, filters, etc.
+# ---------------------------------------------------------------
+
+# Job titles to KEEP (case-insensitive, matched inside the title)
+role_keywords:
+  - data engineer
+  - data engineering
+  - etl developer
+  - etl engineer
+  - big data engineer
+  - big data developer
+  - data platform engineer
+  - data pipeline engineer
+  - data warehouse engineer
+  - data integration engineer
+  - analytics engineer
+  - databricks engineer
+  - databricks developer
+  - spark engineer
+  - spark developer
+  - snowflake engineer
+  - snowflake developer
+  - azure data engineer
+  - aws data engineer
+  - gcp data engineer
+  - cloud data engineer
+
+# Titles containing any of these are DROPPED
+title_exclude:
+  - data entry
+  - intern
+  - internship
+  - director
+  - vice president
+  - " vp"
+  - head of
+  - manager
+
+# Eligibility filter (clearance / citizenship / green card / ITAR)
+eligibility:
+  exclude_clearance: true          # security clearance, TS/SCI, public trust, polygraph
+  exclude_citizenship_only: true   # US citizens only, USC/GC, green card only, permanent residents only
+  exclude_itar_us_person: true     # ITAR / export-control "U.S. person" requirement
+  exclude_no_sponsorship: false    # false = keep but flag "No sponsorship"; true = drop
+
+# Look-back window. Monday's run (IST) covers Fri -> Mon.
+lookback_hours_weekday: 25
+lookback_hours_monday: 73
+
+# Search phrases used by Adzuna / JSearch / discovery
+search_phrases:
+  - data engineer
+  - etl developer
+  - big data engineer
+
+sources:
+  greenhouse: true
+  lever: true
+  ashby: true
+  smartrecruiters: true
+  workday_detail: true     # fetch full JD for Workday links found by discovery
+  adzuna: true             # needs ADZUNA_APP_ID + ADZUNA_APP_KEY
+  jsearch: true            # needs JSEARCH_RAPIDAPI_KEY or OPENWEBNINJA_API_KEY
+  discovery: true          # Brian's-Job-Search-style ATS search; needs BRAVE_API_KEY
+
+jsearch:
+  num_pages: 3             # each page counts against your JSearch quota
+  employment_types: FULLTIME,CONTRACTOR
+
+adzuna:
+  pages: 3
+  results_per_page: 50
+
+discovery:
+  pages_per_query: 2       # Brave results pages (20 results each)
+  site_groups:
+    - "site:boards.greenhouse.io OR site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com"
+    - "site:myworkdayjobs.com"
+    - "site:jobs.smartrecruiters.com OR site:apply.workable.com OR site:jobs.jobvite.com OR site:icims.com"
+
+# Company names containing these get a "Possible staffing agency" flag
+staffing_keywords:
+  - staffing
+  - recruit
+  - talent
+  - consulting
+  - consultancy
+  - infotech
+  - solutions inc
+  - it services
+  - technologies inc
+
+link_check:
+  timeout_seconds: 15
+  workers: 16
+
+output:
+  dir: output
+  max_description_chars: 30000   # Excel cell limit is 32,767
